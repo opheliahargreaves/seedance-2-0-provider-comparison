@@ -1,7 +1,3 @@
 __pycache__/
-*.py[cod]
-.env
-.env.*
-!.env.example
-node_modules/
-dist/
+.pytest_cache/
+.DS_Store

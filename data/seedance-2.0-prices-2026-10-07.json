@@ -1,0 +1,180 @@
+{
+  "checked": "2026-10-07",
+  "currency": "USD",
+  "unit": "per second of output video, 16:9",
+  "about": "Rates each provider published for Seedance 2.0, 2.0 Fast and 2.0 Mini on the date above. 'computed' lists tiers the provider prices in tokens without stating a per-second figure; those were computed from its token price and BytePlus's 16:9 output sizes (864x496, 1280x720, 1920x1080, 3840x2160).",
+  "video_rules": {
+    "same_rate_plus_reference": "a reference video's length is added to the billed seconds at the normal rate; the fraction of a second is dropped",
+    "input_plus_output": "with video input a different per-second rate applies to input + output seconds",
+    "output_only": "with video input a higher per-second rate applies to the output seconds only",
+    "not_published": "the provider page read did not state how video input is billed"
+  },
+  "providers": [
+    {
+      "name": "ArgoLink",
+      "url": "https://argolink.io/en/models/seedance-2.0",
+      "billing": "per output second",
+      "video_rule": "same_rate_plus_reference",
+      "models": {
+        "seedance-2.0": {"no_video": {"480p": 0.053, "720p": 0.11, "1080p": 0.28, "4k": 0.58}},
+        "seedance-2.0-fast": {"no_video": {"480p": 0.042, "720p": 0.091}},
+        "seedance-2.0-mini": {"no_video": {"480p": 0.026, "720p": 0.057}}
+      },
+      "notes": ["failed and expired jobs are not billed", "accepts fal and OpenRouter field names"]
+    },
+    {
+      "name": "BytePlus ModelArk (official)",
+      "url": "https://docs.byteplus.com/en/docs/modelark/model-pricing",
+      "billing": "tokens: (input video s + output s) x width x height x 24 / 1024",
+      "video_rule": "input_plus_output",
+      "models": {
+        "seedance-2.0": {
+          "no_video": {"480p": 0.07031, "720p": 0.1512, "1080p": 0.37422, "4k": 0.7776},
+          "with_video": {"480p": 0.04319, "720p": 0.09288, "1080p": 0.22842, "4k": 0.46656},
+          "computed": ["480p", "720p", "1080p", "4k"]
+        },
+        "seedance-2.0-fast": {
+          "no_video": {"480p": 0.05625, "720p": 0.12096},
+          "with_video": {"480p": 0.03315, "720p": 0.07128},
+          "computed": ["480p", "720p"]
+        },
+        "seedance-2.0-mini": {
+          "no_video": {"480p": 0.03515, "720p": 0.0756},
+          "with_video": {"480p": 0.02109, "720p": 0.04536},
+          "computed": ["480p", "720p"]
+        }
+      },
+      "notes": [
+        "$7.0 / $7.7 / $4.0 per million tokens for 2.0 at 480p-720p / 1080p / 4K; $4.3 / $4.7 / $2.4 with video input",
+        "Fast $5.6 ($3.3 with video), Mini $3.5 ($2.1 with video) per million tokens",
+        "a minimum token charge applies when the input includes video",
+        "models activate only with a balance above USD 30, a USD 30+ savings plan, or a resource pack",
+        "enterprise-only discounts on Fast (25%) and Mini (60%) ran until 2026-10-07 14:00 UTC+8"
+      ]
+    },
+    {
+      "name": "OpenRouter",
+      "url": "https://openrouter.ai/bytedance/seedance-2.0",
+      "billing": "tokens, same formula and rates as BytePlus (Fast at $4.20 per million)",
+      "video_rule": "input_plus_output",
+      "models": {
+        "seedance-2.0": {
+          "no_video": {"480p": 0.06726, "720p": 0.1512, "1080p": 0.37422, "4k": 0.7776},
+          "with_video": {"480p": 0.04131, "720p": 0.09288, "1080p": 0.22842, "4k": 0.4666},
+          "computed": ["1080p"]
+        },
+        "seedance-2.0-fast": {
+          "no_video": {"480p": 0.04035, "720p": 0.09072},
+          "with_video": {"480p": 0.02378, "720p": 0.05346}
+        },
+        "seedance-2.0-mini": {
+          "no_video": {"480p": 0.03363, "720p": 0.0756},
+          "with_video": {"480p": 0.02018, "720p": 0.04536}
+        }
+      },
+      "notes": ["5.5% fee when buying credits by card (5% crypto)", "480p priced at 854x480 on its pages"]
+    },
+    {
+      "name": "Replicate",
+      "url": "https://replicate.com/bytedance/seedance-2.0",
+      "billing": "per output second",
+      "video_rule": "output_only",
+      "models": {
+        "seedance-2.0": {
+          "no_video": {"480p": 0.08, "720p": 0.18, "1080p": 0.45, "4k": 1.0},
+          "with_video": {"480p": 0.10, "720p": 0.22, "1080p": 0.55, "4k": 1.25}
+        },
+        "seedance-2.0-fast": {"no_video": {"480p": 0.07, "720p": 0.15}, "with_video": {"480p": 0.08, "720p": 0.17}},
+        "seedance-2.0-mini": {"no_video": {"480p": 0.04, "720p": 0.09}, "with_video": {"480p": 0.05, "720p": 0.11}}
+      },
+      "notes": []
+    },
+    {
+      "name": "PiAPI",
+      "url": "https://piapi.ai/seedance-2-0",
+      "billing": "per output second",
+      "video_rule": "not_published",
+      "models": {
+        "seedance-2.0": {"no_video": {"480p": 0.10, "720p": 0.20, "1080p": 0.50}},
+        "seedance-2.0-fast": {"no_video": {"480p": 0.048, "720p": 0.096}},
+        "seedance-2.0-mini": {"no_video": {"480p": 0.042, "720p": 0.084}}
+      },
+      "notes": [
+        "-less-restriction variants accept face references after review: 2.0 $0.11/$0.22/$0.55, Fast $0.053/$0.106, Mini $0.046/$0.092",
+        "watermark removal priced separately",
+        "new accounts get $0.50 of free credit; subscription plans are separate from usage"
+      ]
+    },
+    {
+      "name": "Kie.ai",
+      "url": "https://kie.ai/seedance-2-0",
+      "billing": "credits per second",
+      "video_rule": "input_plus_output",
+      "models": {
+        "seedance-2.0": {
+          "no_video": {"480p": 0.095, "720p": 0.205, "1080p": 0.51, "4k": 1.04},
+          "with_video": {"480p": 0.0575, "720p": 0.125, "1080p": 0.31, "4k": 0.64}
+        },
+        "seedance-2.0-fast": {
+          "no_video": {"480p": 0.059, "720p": 0.124},
+          "with_video": {"480p": 0.034, "720p": 0.075}
+        }
+      },
+      "notes": ["prices marked beta", "high-tier top-ups include a 10% credit bonus"]
+    },
+    {
+      "name": "WaveSpeedAI",
+      "url": "https://wavespeed.ai/models/bytedance/seedance-2.0/text-to-video",
+      "billing": "per output second",
+      "video_rule": "input_plus_output",
+      "models": {
+        "seedance-2.0": {
+          "no_video": {"480p": 0.12, "720p": 0.24, "1080p": 0.60, "4k": 1.20},
+          "with_video": {"480p": 0.075, "720p": 0.15, "1080p": 0.375, "4k": 0.75}
+        },
+        "seedance-2.0-fast": {
+          "no_video": {"480p": 0.10, "720p": 0.20},
+          "with_video": {"480p": 0.065, "720p": 0.13}
+        },
+        "seedance-2.0-mini": {
+          "no_video": {"480p": 0.06, "720p": 0.12},
+          "with_video": {"480p": 0.0375, "720p": 0.075}
+        }
+      },
+      "notes": ["each reference video counts at least 2 s; combined input rounded up to a whole second"]
+    },
+    {
+      "name": "Atlas Cloud",
+      "url": "https://www.atlascloud.ai/models/bytedance/seedance-2.0/text-to-video",
+      "billing": "tokens ($0.0112 per 1,000; $0.00688 with video input)",
+      "video_rule": "input_plus_output",
+      "models": {
+        "seedance-2.0": {"no_video": {"720p": 0.2419}, "with_video": {"720p": 0.1486}}
+      },
+      "notes": ["only the 720p rate is stated on the page read", "page title advertises unlimited concurrency"]
+    },
+    {
+      "name": "fal",
+      "url": "https://fal.ai/models/bytedance/seedance-2.0/text-to-video",
+      "billing": "tokens ($0.014 per 1,000 for 2.0, $0.008 at 4K; Fast $0.0112; Mini $0.007)",
+      "video_rule": "input_plus_output",
+      "models": {
+        "seedance-2.0": {
+          "no_video": {"480p": 0.14062, "720p": 0.3024, "1080p": 0.682, "4k": 1.5552},
+          "with_video": {"480p": 0.08437, "720p": 0.1814, "1080p": 0.4092, "4k": 0.93312},
+          "computed": ["480p", "4k"]
+        },
+        "seedance-2.0-fast": {
+          "no_video": {"480p": 0.11249, "720p": 0.2419},
+          "with_video": {"480p": 0.06749, "720p": 0.1452},
+          "computed": ["480p"]
+        },
+        "seedance-2.0-mini": {
+          "no_video": {"480p": 0.0721, "720p": 0.1547},
+          "with_video": {"480p": 0.04326, "720p": 0.09282}
+        }
+      },
+      "notes": ["0.6x rate when a video is attached, applied to input + output seconds", "new accounts start at 2 concurrent requests, up to 40 with spend"]
+    }
+  ]
+}
